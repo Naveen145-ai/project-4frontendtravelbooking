@@ -1,0 +1,199 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*for home page heading*/
+/*h1 {
+ color: red;
+}*/
+
+.className {
+  color: red;
+}
+
+.home-container {
+  background-image: ('/images/products/13.jpg'); 
+  background-color: white;
+  /* Adjust path if needed */
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Full screen height */
+  display: flex;
+ 
+  justify-content: center;
+  text-align: center;
+}
+
+/*for header page*/
+
+/* Header.css */
+
+/* Style for the header element with class "header" */
+.header {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+/* Style for the header element with id "main-header" */
+#main-header {
+  border-bottom: 2px solid #444;
+}
+
+/* Style for the h1 element with class "header-title" */
+.header-title {
+  margin: 0;
+  font-size: 2rem;
+  color: blue;
+}
+
+/* Style for the nav element with class "header-nav" */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #333;
+  color: white;
+}
+
+.header-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+}
+
+
+/* for productcard */
+
+/* Ensure all cards have the same height */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures even spacing */
+  align-items: center;
+  height: 100%; /* Ensure consistent height */
+  border: 1px solid rgb(244, 22, 22);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Ensure images inside cards are uniform */
+.card-img-top {
+  width: 100%; /* Make image stretch to full width */
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensures images maintain aspect ratio */
+}
+
+/* Make sure card bodies have equal height */
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* Ensure button width consistency */
+.btn-block {
+  width: 100%;
+}
+
+
+
+
+/* Login Page*/
+
+
+.login-container {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 15px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}
