@@ -129,7 +129,7 @@
   justify-content: space-between; /* Ensures even spacing */
   align-items: center;
   height: 100%; /* Ensure consistent height */
-  border: 1px solid rgb(244, 22, 22);
+  
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
