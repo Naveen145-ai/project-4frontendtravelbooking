@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import AboutUs from "./pages/AboutUs";
 import Register from "./pages/Register";
 import AdminPage from "./pages/AdminPage";
+import GoogleTranslate from "./components/GoogleTranslate";
+// Make sure this path is correct
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -20,11 +22,13 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/login" element={<Login />} />
 
+
         <Route
           path="/*"
           element={
             <div>
               <Header cartItems={cartItems} />
+              <GoogleTranslate />
               <Routes>
                 <Route path="/home" element={<Home />} />
                 <Route path="/product/:id" element={<ProductDetail cartItems={cartItems} setCartItems={setCartItems} />} />
@@ -41,6 +45,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

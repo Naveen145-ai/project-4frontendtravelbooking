@@ -22,7 +22,7 @@ export default function Home(){
     return <Fragment>
             
 
-    <h1 className="products_heading">TRAVEL BOOKING PORTAL</h1>
+    <h1 className="products_heading"  style={{ textAlign: 'center' }}>TRAVEL BOOKING PORTAL</h1>
 
     <section id="products" className="container mt-5">
       <div className="row">  

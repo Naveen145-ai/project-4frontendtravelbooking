@@ -27,7 +27,7 @@ export default function ProductCard({ product }) {
                         <span className="ml-2">({Number(product.ratings).toFixed(1)})</span>
                     </div>
 
-                    <p className="card-text">${product.price} (per adult)</p>
+                   
                     <Link to={`/product/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
                 </div>
             </div>
