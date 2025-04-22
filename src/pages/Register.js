@@ -27,7 +27,7 @@ const Register = () => {
 
       if (response.data.success) {
         
-        setTimeout(() => navigate("/login"), 1000);
+        setTimeout(() => navigate("/verify-otp"));
       } else {
         setError(response.data.message || "Registration failed.");
       }
