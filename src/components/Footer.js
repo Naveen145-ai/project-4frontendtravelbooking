@@ -46,3 +46,4 @@ export default function Footer() {
     </footer>
   );
 }
+console.log("Hi");

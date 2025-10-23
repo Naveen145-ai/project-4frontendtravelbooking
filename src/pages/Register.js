@@ -19,7 +19,7 @@ const Register = () => {
     setSuccess("");
 
     try {
-      const response = await axios.post("http://54.221.83.251:4000/api/v1/register", {
+      const response = await axios.post("http://54.157.201.9:4000/api/v1/register", {
         name,
         email,
         phone,
@@ -44,7 +44,7 @@ const Register = () => {
     setError("");
     
     try {
-      const response = await axios.post("http://54.221.83.251:4000/api/v1/adminlogin", {
+      const response = await axios.post("http://54.157.201.9:4000/api/v1/adminlogin", {
         email,
         phone,
         password, // Send admin password for authentication
