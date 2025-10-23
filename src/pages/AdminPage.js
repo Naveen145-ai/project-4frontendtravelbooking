@@ -13,7 +13,7 @@ const AdminPage = () => {
   const [menuVisible, setMenuVisible] = useState(false); // State for controlling the menu visibility
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/v1/admin/products')
+    axios.get('http://54.221.83.251:4000/api/v1/admin/products')
       .then(res => setProducts(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -30,7 +30,7 @@ const AdminPage = () => {
 
   const addProduct = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/v1/admin/products', newProduct);
+      const res = await axios.post('http://54.221.83.251:4000/api/v1/admin/products', newProduct);
       setProducts([...products, res.data.product]);
 
       Swal.fire({
@@ -45,7 +45,7 @@ const AdminPage = () => {
 
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/v1/admin/products/${id}`);
+      await axios.delete(`http://54.221.83.251:4000/api/v1/admin/products/${id}`);
       setProducts(products.filter(product => product._id !== id));
     } catch (error) {
       console.log(error.response.data);
@@ -59,7 +59,7 @@ const AdminPage = () => {
 
   const updateProduct = async () => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/v1/admin/products/${editingProduct._id}`, newProduct);
+      const res = await axios.put(`http://54.221.83.251:4000/api/v1/admin/products/${editingProduct._id}`, newProduct);
       setProducts(products.map(p => (p._id === editingProduct._id ? res.data.updatedProduct : p)));
       setEditingProduct(null);
       setNewProduct({

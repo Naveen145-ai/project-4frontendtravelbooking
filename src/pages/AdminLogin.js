@@ -9,7 +9,7 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/v1/adminlogin", {
+      const response = await fetch("http://54.221.83.251:4000/api/v1/adminlogin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

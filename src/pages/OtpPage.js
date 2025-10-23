@@ -14,7 +14,7 @@ const OtpPage = () => {
     setSuccess("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/verify-otp", {
+      const response = await axios.post("http://54.221.83.251:4000/api/v1/verify-otp", {
         otp, // Send OTP entered by the user
       });
 

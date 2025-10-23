@@ -10,7 +10,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
     const { id } = useParams();
 
     useEffect(() => {  
-        fetch(`http://localhost:5000/api/v1/product/${id}`)
+        fetch(`http://54.221.83.251:4000/api/v1/product/${id}`)
             .then(res => res.json())
             .then(res => setProduct(res.product));
     }, [id]);

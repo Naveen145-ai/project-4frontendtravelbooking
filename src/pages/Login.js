@@ -13,7 +13,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/login", { email, phone });
+      const response = await axios.post("http://54.221.83.251:4000/api/v1/login", { email, phone });
 
       console.log("API Response:", response.data);
 

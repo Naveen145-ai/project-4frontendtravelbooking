@@ -9,7 +9,7 @@ export default function Home(){
 
    
    useEffect(() => {
-    fetch("http://localhost:5000/api/v1/products"+searchParams)
+    fetch("http://54.221.83.251:4000/api/v1/products"+searchParams)
       .then((res) => res.json())
       .then((res) => {
         console.log(res.products); 
