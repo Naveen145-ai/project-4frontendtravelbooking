@@ -12,12 +12,12 @@ const AdminPage = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [menuVisible, setMenuVisible] = useState(false); // State for controlling the menu visibility
 
-  // Fetch products
   useEffect(() => {
     axios.get('http://localhost:5000/api/v1/admin/products')
       .then(res => setProducts(res.data))
       .catch(err => console.log(err));
   }, []);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,7 +82,7 @@ const AdminPage = () => {
       <style>{`
         body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background: linear-gradient(135deg, #e0eafc,rgb(13, 114, 255));
+          background: linear-gradient(135deg, #e0eafc, rgb(13, 114, 255));
           margin: 0;
           padding: 0;
           display: flex;
@@ -97,18 +97,18 @@ const AdminPage = () => {
           margin-bottom: 20px;
         }
 
-        div.container {
+        .container {
           max-width: 600px;
           width: 90%;
           background: white;
           padding: 30px;
           border-radius: 15px;
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-          animation: fadeIn 0.6s ease-in-out;
+          animation: fadeSlideIn 0.6s ease-in-out;
         }
 
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
@@ -118,13 +118,13 @@ const AdminPage = () => {
           margin: 12px 0;
           border: 1px solid #ccc;
           border-radius: 8px;
-          transition: border-color 0.3s ease;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         input:focus {
           outline: none;
           border-color: #007bff;
-          box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+          box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
         }
 
         button {
@@ -134,11 +134,12 @@ const AdminPage = () => {
           border-radius: 8px;
           cursor: pointer;
           font-weight: bold;
-          transition: background-color 0.3s ease, transform 0.2s ease;
+          transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
 
         button:hover {
           transform: scale(1.05);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         button.edit {
@@ -174,6 +175,24 @@ const AdminPage = () => {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          animation: fadeInGrow 0.5s ease-in-out;
+          transition: transform 0.3s ease;
+        }
+
+        li:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        @keyframes fadeInGrow {
+          from {
+            opacity: 0;
+            transform: scale(0.97);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
         }
 
         li > .actions {
@@ -291,6 +310,31 @@ const AdminPage = () => {
           </li>
         ))}
       </ul>
+<<<<<<< HEAD
+
+      <h2 className="section-title">View Orders</h2>
+      <ul>
+        {orders.map(order => (
+          <li className="order-item" key={order._id}>
+            <div><strong>Order ID:</strong> {order._id}</div>
+            <div><strong>User:</strong> {order.user?.name || 'Guest'}</div>
+            <div><strong>Status:</strong> {order.status}</div>
+            <div><strong>Total:</strong> ₹{order.totalPrice}</div>
+            <div><strong>Date:</strong> {new Date(order.createdAt).toLocaleString()}</div>
+            <div><strong>Items:</strong>
+              <ul>
+                {order.orderItems.map((item, index) => (
+                  <li key={index}>
+                    {item.name} (x{item.quantity}) - ₹{item.price}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ul>
+=======
+>>>>>>> 70b5b54 (cicd-pipeline)
     </div>
   );
 };

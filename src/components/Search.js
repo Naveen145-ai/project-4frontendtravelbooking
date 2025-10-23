@@ -1,18 +1,11 @@
-
-
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-
 export default function Search() {
     const [keyword, setKeyword] = useState("");
     const navigate = useNavigate();
-
     const searchHandler = () => {          // for search to navigate the link(url)
         navigate('/search?keyword='+keyword)
-
-    }
-
-       
+    }  
     return <div className="input-group">
       <input
         type="text"
