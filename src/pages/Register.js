@@ -195,3 +195,6 @@ const styles = {
 };
 
 export default Register;
+
+
+console.log("Hi");
