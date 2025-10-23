@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"; 
 import { useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 export default function ProductDetail({ cartItems, setCartItems }) {
     const [product, setProduct] = useState(null);
@@ -16,22 +17,34 @@ export default function ProductDetail({ cartItems, setCartItems }) {
 
     function addToCart() {
         if (!product) return;
-
-        // Get price based on selected category
+    
         const categoryPrices = {
             child: product.child,
             teen: product.teen,
             adult: product.adults,
             senior: product.senior,
         };
-
+    
         const price = categoryPrices[selectedCategory];
-
-        const itemsExist = cartItems.find((item) => item.product._id === product._id && item.category === selectedCategory);
+    
+        const itemsExist = cartItems.find(
+            (item) => item.product._id === product._id && item.category === selectedCategory
+        );
+    
         if (!itemsExist) {
             const newItem = { product, qty, category: selectedCategory, price };
             setCartItems((state) => [...state, newItem]);
             toast.success("Ticket added to cart successfully!");
+    
+            // Show SweetAlert2 confirmation popup
+            Swal.fire({
+             
+                text: 'Your ticket has been successfully added to the cart.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                timer: 2000,
+                showConfirmButton: false,
+            });
         }
     }
 
@@ -98,8 +111,14 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                     <hr />
                     <h4 className="mt-2">Description:</h4>
                     <p>{product.description}</p>
+                    <a href="https://wa.me/+916379453853?text=I'm%20interested%20in%20to%chat" target="_blank" class="whatsapp-chat">
+        <img src="/images/products/whatsApp.png" alt="whatsapp" width="70px"/>
+
+
+    </a>   
                 </div>
             </div>
         </div>
+        
     );
 }

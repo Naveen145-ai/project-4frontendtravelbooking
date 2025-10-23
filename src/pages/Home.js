@@ -21,7 +21,11 @@ export default function Home(){
 
     return <Fragment>
             
+<a href="https://wa.me/+916379453853?text=I'm%20interested%20in%20to%chat" target="_blank" class="whatsapp-chat">
+        <img src="/images/products/whatsApp.png" alt="whatsapp" width="70px"/>
 
+
+    </a>   
     <h1 className="products_heading"  style={{ textAlign: 'center' }}>TRAVEL BOOKING PORTAL</h1>
 
     <section id="products" className="container mt-5">
@@ -29,7 +33,7 @@ export default function Home(){
       {products.map((product) => (
   <ProductCard key={product._id} product={product} />
 ))}
-
+ 
 
 
       </div>

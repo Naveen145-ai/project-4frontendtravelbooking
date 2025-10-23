@@ -7,7 +7,7 @@ export default function Header({ cartItems }) {
       <div className="container d-flex align-items-center justify-content-between">
         {/* Logo Section */}
         <div className="logo">
-          <Link to="/">
+          <Link to="/home">
             <img width="150px" src="/images/products/logo.jpg" alt="Logo" />
           </Link>
         </div>

@@ -1,0 +1,38 @@
+name: Deploy React Application  #name of the workflow
+# This workflow deploys a Node.js application to a server upon pushing to the main branch.
+# where it should be triggered
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout Source
+    #this action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+      uses: actions/checkout@v5
+    #this for login to docker hub and build and push the image to docker hub
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Build Docker Image
+      run: docker build -t naveen656/frontenddeploy:latest .
+
+    - name: Publish Image to Docker Hub
+      run: docker push naveen656/frontenddeploy:latest
+
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+    - name: Pull Image from Docker Hub
+      run: docker pull naveen656/frontenddeploy:latest
+    - name: Run Docker Container
+      run: docker run -d -p 4000:80 --name frontendtravelbookingcontainer -e MONGO_PASSWORD="${{ secrets.MONGO_PASSWORD }}" naveen656/frontenddeploy:latest
+
+      

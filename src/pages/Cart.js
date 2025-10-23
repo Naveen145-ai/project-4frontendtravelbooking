@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -41,39 +42,8 @@ export default function Cart({ cartItems, setCartItems }) {
         const updatedItems = cartItems.filter((i) => !(i.product._id === item.product._id && i.category === item.category));
         setCartItems(updatedItems);
     }
-
-    /*function placeOrder() {
-        if (!cartItems || cartItems.length === 0) {
-            alert("Cart is empty!");
-            return;
-        }
-    
-        fetch('http://localhost:5000/api/v1/order', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cartItems)  // ✅ Send as an array (matches backend)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                setCartItems([]);
-                setComplete(true);
-                alert("Order placed successfully!");  // Or use toast
-            } else {
-                alert(`Order failed: ${data.message}`);
-            }
-        })
-        .catch(error => {
-            console.error("Order error:", error);
-            alert("Something went wrong. Please try again.");
-        });
-    }*/
-    
-
     
     function placeOrder() {
-        
-        
         fetch('http://localhost:5000/api/v1/order', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -83,10 +53,18 @@ export default function Cart({ cartItems, setCartItems }) {
             console.log(res);
             setCartItems([]); 
             setComplete(true);
-            //toast.success("Order Success!")
-        })
+            
+            // SweetAlert for ticket booking confirmation
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your ticket has been booked!',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        });
     }
-
+    
     return cartItems.length > 0 ? (
         <Fragment>
             <div className="container container-fluid">
@@ -152,5 +130,5 @@ export default function Cart({ cartItems, setCartItems }) {
                 </div>
             </div>
         </Fragment>
-    ) : (!complete ? <h2 className="mt-5">Your Cart is Empty!</h2> : <h2 className="mt-5">Order Placed Successfully!</h2>);
+    ) : (!complete ? <h2 className="mt-5">Your Cart is Empty!</h2> : <h2 className="mt-5"></h2>);
 } 

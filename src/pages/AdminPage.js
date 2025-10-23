@@ -1,27 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AdminPage = () => {
-  const [products, setProducts] = useState([]);
-  const [orders, setOrders] = useState([]);
+  const [products, setProducts] = useState([]); // Stores products (places)
   const [newProduct, setNewProduct] = useState({
     name: '', child: '', teen: '', adults: '', senior: '', ratings: '',
     description: '', Enter: '', Return: '', stock: '',
     images: [{ image: '' }], Hotels: '', Places: '', Date: ''
   });
   const [editingProduct, setEditingProduct] = useState(null);
+  const [menuVisible, setMenuVisible] = useState(false); // State for controlling the menu visibility
 
   // Fetch products
   useEffect(() => {
     axios.get('http://localhost:5000/api/v1/admin/products')
       .then(res => setProducts(res.data))
-      .catch(err => console.log(err));
-  }, []);
-
-  // Fetch orders
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/v1/admin/orders')
-      .then(res => setOrders(res.data))
       .catch(err => console.log(err));
   }, []);
 
@@ -38,6 +32,12 @@ const AdminPage = () => {
     try {
       const res = await axios.post('http://localhost:5000/api/v1/admin/products', newProduct);
       setProducts([...products, res.data.product]);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Place Added Successfully',
+        text: `${newProduct.name} has been added successfully.`
+      });
     } catch (error) {
       console.log(error.response.data);
     }
@@ -65,11 +65,16 @@ const AdminPage = () => {
       setNewProduct({
         name: '', child: '', teen: '', adults: '', senior: '', ratings: '',
         description: '', Enter: '', Return: '', stock: '',
-        images: [{ image: '' }], Hotels: '', Places: '', Date: ''
+        images: [{ image: '' }], Hotels: '', Places: '', Date: '',
       });
     } catch (error) {
       console.log(error.response.data);
     }
+  };
+
+  // Toggle menu visibility
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
   };
 
   return (
@@ -191,6 +196,43 @@ const AdminPage = () => {
         .order-item {
           background-color: #f0f8ff;
         }
+
+        .menu-icon {
+          font-size: 24px;
+          cursor: pointer;
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          z-index: 1000;
+        }
+
+        .menu-content {
+          display: ${menuVisible ? 'block' : 'none'};
+          position: fixed;
+          top: 60px;
+          left: 20px;
+          background-color: #fff;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          padding: 10px;
+          width: 200px;
+          z-index: 999;
+        }
+
+        .menu-content ul {
+          padding: 0;
+        }
+
+        .menu-content ul li {
+          padding: 10px;
+          border-bottom: 1px solid #ddd;
+          cursor: pointer;
+        }
+
+        .menu-content ul li:hover {
+          background-color: #f1f1f1;
+        }
+
       `}</style>
 
       <h2>Admin Dashboard - Manage Products</h2>
@@ -212,10 +254,28 @@ const AdminPage = () => {
         <input type="text" name="image" placeholder="Image URL" value={newProduct.images[0].image} onChange={handleChange} />
 
         {editingProduct ? (
-          <button className="add" onClick={updateProduct}>Update Product</button>
+          <button className="add" onClick={updateProduct}>Update Places</button>
         ) : (
-          <button className="add" onClick={addProduct}>Add Product</button>
+          <button className="add" onClick={addProduct}>Add Places
+          
+          
+          </button>
         )}
+      </div>
+
+      {/* Menu Icon and Places Details */}
+      <div className="menu-icon" onClick={toggleMenu}>
+        &#9776; {/* Hamburger Menu Icon */}
+      </div>
+      <div className="menu-content">
+        <ul>
+          {/* Display the added places (hotels) */}
+          {products.map((product) => (
+            <li key={product._id}>
+              {product.Hotels} - {product.Places}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <ul>
@@ -227,29 +287,6 @@ const AdminPage = () => {
             <div className="actions">
               <button className="edit" onClick={() => startEdit(product)}>Edit</button>
               <button className="delete" onClick={() => deleteProduct(product._id)}>Delete</button>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      {/* Admin Order Viewing Section */}
-      <h2 className="section-title">View Orders</h2>
-      <ul>
-        {orders.map(order => (
-          <li className="order-item" key={order._id}>
-            <div><strong>Order ID:</strong> {order._id}</div>
-            <div><strong>User:</strong> {order.user?.name || 'Guest'}</div>
-            <div><strong>Status:</strong> {order.status}</div>
-            <div><strong>Total:</strong> ₹{order.totalPrice}</div>
-            <div><strong>Date:</strong> {new Date(order.createdAt).toLocaleString()}</div>
-            <div><strong>Items:</strong>
-              <ul>
-                {order.orderItems.map((item, index) => (
-                  <li key={index}>
-                    {item.name} (x{item.quantity}) - ₹{item.price}
-                  </li>
-                ))}
-              </ul>
             </div>
           </li>
         ))}

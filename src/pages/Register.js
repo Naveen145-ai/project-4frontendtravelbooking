@@ -25,10 +25,12 @@ const Register = () => {
         phone,
       });
 
+      // Inside handleRegister
       if (response.data.success) {
-        
-        setTimeout(() => navigate("/verify-otp"));
-      } else {
+        setSuccess(response.data.message);
+        setTimeout(() => navigate("/verify-otp"), 2000); // Redirect to login after successful OTP verification
+      } 
+ else {
         setError(response.data.message || "Registration failed.");
       }
     } catch (err) {
