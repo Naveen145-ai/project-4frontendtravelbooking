@@ -226,7 +226,6 @@ const AdminPage = () => {
         }
 
         .menu-content {
-          display: ${menuVisible ? 'block' : 'none'};
           position: fixed;
           top: 60px;
           left: 20px;
@@ -275,10 +274,7 @@ const AdminPage = () => {
         {editingProduct ? (
           <button className="add" onClick={updateProduct}>Update Places</button>
         ) : (
-          <button className="add" onClick={addProduct}>Add Places
-          
-          
-          </button>
+          <button className="add" onClick={addProduct}>Add Places</button>
         )}
       </div>
 
@@ -286,7 +282,7 @@ const AdminPage = () => {
       <div className="menu-icon" onClick={toggleMenu}>
         &#9776; {/* Hamburger Menu Icon */}
       </div>
-      <div className="menu-content">
+      <div className="menu-content" style={{ display: menuVisible ? 'block' : 'none' }}>
         <ul>
           {/* Display the added places (hotels) */}
           {products.map((product) => (
@@ -310,31 +306,6 @@ const AdminPage = () => {
           </li>
         ))}
       </ul>
-<<<<<<< HEAD
-
-      <h2 className="section-title">View Orders</h2>
-      <ul>
-        {orders.map(order => (
-          <li className="order-item" key={order._id}>
-            <div><strong>Order ID:</strong> {order._id}</div>
-            <div><strong>User:</strong> {order.user?.name || 'Guest'}</div>
-            <div><strong>Status:</strong> {order.status}</div>
-            <div><strong>Total:</strong> ₹{order.totalPrice}</div>
-            <div><strong>Date:</strong> {new Date(order.createdAt).toLocaleString()}</div>
-            <div><strong>Items:</strong>
-              <ul>
-                {order.orderItems.map((item, index) => (
-                  <li key={index}>
-                    {item.name} (x{item.quantity}) - ₹{item.price}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ul>
-=======
->>>>>>> 70b5b54 (cicd-pipeline)
     </div>
   );
 };
