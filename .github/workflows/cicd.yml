@@ -34,9 +34,9 @@ jobs:
       run: docker pull naveen656/frontenddeploy:latest
 
     - name: Delete old container
-      run: docker rm -f backendtravelbookingcontainer
+      run: docker rm -f frontendtravelbookingcontainer
 
     - name: Run Docker Container
-      run: docker run -d -p 4000:80 --name frontendtravelbookingcontainer -e MONGO_PASSWORD="${{ secrets.MONGO_PASSWORD }}" naveen656/frontenddeploy:latest
+      run: docker run -d -p 3000:80 --name frontendtravelbookingcontainer  naveen656/frontenddeploy:latest
 
       

@@ -30,3 +30,6 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+
+
+console.log("Hi");

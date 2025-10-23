@@ -1,18 +1,16 @@
-FROM node:alphine3.21 as build
+# Stage 1: Build React app
+FROM node:alpine3.21 AS build
 
-#Build App
-
-WORKDIR /App
-copy package.json .
+WORKDIR /app
+COPY package.json .
 RUN npm install
-copy . . .
+COPY . .
 RUN npm run build
 
-#SERVER with Nginx
-
-FROM n:1.29-alphine-perl
+# Stage 2: Serve app with Nginx
+FROM nginx:1.29-alpine-perl
 WORKDIR /usr/share/nginx/html
-RUN rm -rf *
+RUN rm -rf ./*
 COPY --from=build /app/build .
 EXPOSE 80
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
