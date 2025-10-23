@@ -39,3 +39,4 @@ const GoogleTranslate = () => {
 };
 
 export default GoogleTranslate;
+console.log("hi");
